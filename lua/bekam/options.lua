@@ -66,10 +66,10 @@ vim.opt.completeopt = { "menuone", "noselect" }
 -- =========================
 --     SHOW INVISIBLE
 -- =========================
-vim.opt.list = true
-vim.opt.listchars = {
-  tab = "» ",
-  trail = "·",
-  nbsp = "␣"
-}
+-- vim.opt.list = true
+-- vim.opt.listchars = {
+--   tab = "» ",
+--   trail = "·",
+--   nbsp = "␣"
+-- }
 
