@@ -73,3 +73,27 @@ vim.opt.completeopt = { "menuone", "noselect" }
 --   nbsp = "␣"
 -- }
 
+
+-- 1. Set the delay (in milliseconds) 
+-- This controls how long to wait after you stop moving/typing
+vim.opt.updatetime = 2000 
+
+-- 2. Create the auto-save mechanism
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  group = vim.api.nvim_create_augroup("autosave", { clear = true }),
+  callback = function()
+    -- Only save if the buffer has been changed and is a real file
+    if vim.bo.modified and vim.fn.expand("%") ~= "" then
+      vim.cmd("silent! update")
+    end
+  end,
+})
+
+-- Simple manual auto-close for HTML files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "html",
+  callback = function()
+    vim.keymap.set("i", ">", "></<C-x><C-o><C-y><C-o>%<CR><C-o>O", { buffer = true })
+  end,
+})
+ 
